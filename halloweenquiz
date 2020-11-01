@@ -1,0 +1,61 @@
+// start of quiz
+               var hallofs = require('fs')
+               const halloweenwuizwelcome = new Discord.RichEmbed()
+                 .setAuthor("Welcome to the event!", message.author.avatarURL, "https://profiles.pw/profile/" + message.author.id)
+ .setDescription("Welcome to the halloween quiz! This quiz will have a set of 7 questions. If you get one wrong, this entire channel will be **deleted.** Good luck! To start, say /question.") // embed that will send when quiz channel is made
+                                           .setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)) // picks a random hex
+               .setTimestamp()   
+               .setFooter("Buy NotJimbo's Generator | The #1 generator", message.guild.iconURL)
+               
+                             const channelexist235s = new Discord.RichEmbed()
+                 .setAuthor("You already have an channel", message.author.avatarURL, "https://profiles.pw/profile/" + message.author.id)
+ .setDescription("You are only allowed one halloween quiz channel. If it has glitched, open a <#737353900096749648> ticket.") 
+                                           .setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6))
+               .setTimestamp()   
+               .setFooter("Buy NotJimbo's Generator | The #1 generator", message.guild.iconURL)
+// if the user has a channel this embed will send
+               const youhavealreadycompletedit = new Discord.RichEmbed()
+               .setAuthor("You have already done this task!", message.author.avatarURL)
+               .setDescription("You have done this task, good job! Task 2 automatically starts. To see what it is, say /halloweenevent.")
+               .setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6))
+               .setThumbnail(message.guild.iconURL)
+               .setTimestamp()
+               .setFooter("Buy NotJimbo's Generator | The #1 generator", message.guild.iconURL)
+
+               if (hallofs.existsSync('./halloweenquestions/completed/' + message.author.id + ".txt")) { // if the user has completed (has a file thats made when they complete it) do the following
+                    
+                    return message.channel.send(youhavealreadycompletedit)
+
+               }
+
+               let channelcheck645 = message.guild.channels.find(c => c.name == "halloween-" + message.author.id && c.type == "text");
+               if (channelcheck645) return message.channel.send(channelexist235s) // checks if user has a channel
+               
+               message.guild.createChannel("halloween-" + message.author.id, "text")
+ .then(m => { // creates quiz channel
+     m.overwritePermissions(message.guild.id, {
+         VIEW_CHANNEL: false
+     }) // no one can view the channel
+ 
+     m.overwritePermissions(message.author.id, {
+         VIEW_CHANNEL: true,
+       SEND_MESSAGES: true
+     }) // lets user who ran it send messages and view channel
+                     
+ m.send(halloweenwuizwelcome) // sends the first embed in the channel
+               
+                                       let category346 = message.guild.channels.find(c => c.name == "Halloween" && c.type == "category"); // finds category
+                       if (!category346) throw new Error("Category channel does not exist"); // if category doesnt exist, throws the error
+                       m.setParent(category346.id);          
+                       // moves channel to category
+                       const eventsuccessasf= new Discord.RichEmbed()
+                       .setAuthor("Your halloween quiz channel has been made!", message.author.avatarURL)
+.setDescription("Your channel has been made. Please visit it at <#" + m.id + ">!", true)
+.setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6))
+.setTimestamp()   
+.setFooter("Buy NotJimbo's Generator | The #1 generator", message.guild.iconURL)
+message.channel.send(eventsuccessasf)
+                   })
+
+
+              // end of creating quiz
