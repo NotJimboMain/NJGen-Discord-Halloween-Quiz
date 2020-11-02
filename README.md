@@ -6,7 +6,7 @@ You'll need the following modules:
 npm install fs
 
 You'll need the following folders:
-Create a "halloweenquestions" folder
+Create a "halloweenquestions" folder.
 Inside that, make a "answers" folder, "completed" folder, "ready" folder and "totalscore" folder.
 
 Then inside of the "halloweenquestions", you'll need the main questions them self which you can find in the questions folder of this repository.
